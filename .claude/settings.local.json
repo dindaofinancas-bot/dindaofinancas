@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run)",
+      "Bash(powershell:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(set:*)",
+      "Bash(set NODE_ENV=production)",
+      "Bash(node:*)",
+      "Bash(npm run dev)",
+      "Bash(npx tsx:*)",
+      "Bash(npm run start)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
