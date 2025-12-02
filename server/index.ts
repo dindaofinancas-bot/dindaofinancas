@@ -26,6 +26,7 @@ try {
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import MemoryStore from "memorystore";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { validateAndInitializeDatabase, waitForDatabase } from "./startup";
@@ -72,6 +73,24 @@ function setupUploadDirectories() {
 setupUploadDirectories();
 
 const app = express();
+
+// Configurar CORS para produção
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production'
+    ? [
+        'https://dindaofinancas.com.br',
+        'https://www.dindaofinancas.com.br',
+        'https://app.dindaofinancas.com.br'
+      ]
+    : ['http://localhost:3000', 'http://localhost:5000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400 // 24 horas
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -86,8 +105,9 @@ app.use(session({
   }),
   cookie: {
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 dias
-    secure: false, // set to true if using HTTPS
-    httpOnly: true
+    secure: process.env.NODE_ENV === 'production', // true em produção (HTTPS)
+    httpOnly: true,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
 }));
 

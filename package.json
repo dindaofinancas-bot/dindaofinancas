@@ -17,7 +17,9 @@
     "vercel-build": "npm run build",
     "vercel-dev": "npm run dev",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
-    "test": "echo \"No tests yet\""
+    "test": "echo \"No tests yet\"",
+    "github:setup": "node scripts/github-setup.js",
+    "github:test-token": "node scripts/github-setup.js --test-token"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -51,6 +53,7 @@
     "@radix-ui/react-toggle-group": "^1.1.3",
     "@radix-ui/react-tooltip": "^1.2.0",
     "@tanstack/react-query": "^5.60.5",
+    "@types/cors": "^2.8.19",
     "@types/jspdf": "^1.3.3",
     "@types/multer": "^2.0.0",
     "@types/react-big-calendar": "^1.16.1",
@@ -63,6 +66,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "connect-pg-simple": "^10.0.0",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.39.3",
