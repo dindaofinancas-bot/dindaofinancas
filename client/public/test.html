@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste FinanceHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Teste FinanceHub - Vercel</h1>
+    <p>Se esta página carrega, o servidor está funcionando.</p>
+    <p id="status">Verificando...</p>
+
+    <script>
+        fetch('/api/health')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').innerHTML =
+                    `<span class="success">✅ API funcionando! Status: ${data.status}</span>`;
+            })
+            .catch(error => {
+                document.getElementById('status').innerHTML =
+                    `<span class="error">❌ Erro na API: ${error.message}</span>`;
+            });
+    </script>
+</body>
+</html>
