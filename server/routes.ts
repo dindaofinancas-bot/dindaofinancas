@@ -87,6 +87,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Configurar documentação Swagger
   setupSwagger(app);
 
+  // Health check endpoint
+  app.get("/api/health", (req: Request, res: Response) => {
+    res.json({
+      status: "ok",
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || "development"
+    });
+  });
+
   // Chart Image Generation (DEVE VIR PRIMEIRO para evitar interceptação)
   app.get("/api/charts/bar", combinedAuth, chartController.generateBarChartSVG);
   app.get("/api/charts/pizza", combinedAuth, chartController.generatePieChartSVG);
