@@ -8,7 +8,7 @@ export TS_NODE_SKIP_PROJECT=true
 
 # Build do frontend (ignorando erros TypeScript)
 echo "1. Build do frontend com Vite..."
-npx vite build --mode production 2>&1 | grep -v "error TS" || true
+npx vite build --mode production 2>&1 | (grep -v "error TS" || cat)
 
 # Build do backend
 echo "2. Build do backend com esbuild..."
