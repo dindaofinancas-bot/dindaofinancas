@@ -14,7 +14,7 @@
     "check": "tsc",
     "db:push": "node scripts/db-push-confirm.cjs",
     "db:seed": "node scripts/seed-globals.cjs",
-    "vercel-build": "npx vite build && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "vercel-build": "bash scripts/vercel-build.sh",
     "vercel-dev": "npm run dev",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "test": "echo \"No tests yet\"",
