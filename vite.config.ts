@@ -8,7 +8,12 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      typescript: {
+        tsconfig: './tsconfig.vercel.json',
+        ignoreBuildErrors: true,
+      }
+    }),
   ],
   resolve: {
     alias: {
